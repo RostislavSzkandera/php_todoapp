@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Todoapp</title>
 </head>
 <body>
-    
+    <?php require "includes/header.php"; ?>
     <main>
         <h2>Seznam úkolů</h2>
         <?php if(empty($tasks)): ?>
