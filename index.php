@@ -1,6 +1,8 @@
 <?php
 
 require "assets/database.php";
+require "assets/functions.php";
+
 
 $connection = connectionDB();
 
@@ -14,7 +16,16 @@ if($result === false){
     $tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['id'])) {
+        $id = intval($_POST['id']); 
+        deleteTask($connection, $id); 
+    } 
+}
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -32,13 +43,18 @@ if($result === false){
             <p>Žádný úkol nenalezen</p>
         <?php else: ?>
             <ul>
-                <?php foreach($tasks as $task): ?>
+                <?php foreach($tasks as $one_task): ?>
                     <li>
-                        <?php echo $task["title"]. " " . $task["status"] ?>
+                        <?php echo $one_task["title"]. " " . $one_task["status"] ?>
+                        <form method="POST" ">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($one_task['id']) ?>">
+                            <button type="submit" onclick="return confirm('Opravdu chcete smazat tento úkol?');">Smazat</button>
+                        </form>
                     </li>
                 <?php endforeach ?>
             </ul>
         <?php endif ?>
+        
     </main>
 
 

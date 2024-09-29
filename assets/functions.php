@@ -17,7 +17,7 @@ function deleteTask($connection, $id){
                     if (mysqli_stmt_affected_rows($stmt) > 0) {
                     echo "Úkol byl úspěšně odstraněn.";
                     header("Location: index.php");
-                    exit();
+                    return true;
                     } else {
                     
                     echo "Chyba při mazání úkolu: ";
