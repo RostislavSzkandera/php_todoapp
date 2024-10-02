@@ -48,6 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php echo $one_task["title"]. " " . $one_task["status"] ?>
                         <form method="POST" ">
                             <input type="hidden" name="id" value="<?= htmlspecialchars($one_task['id']) ?>">
+                            <a href="jeden-ukol.php?id=<?= $one_task['id'] ?>"">Detail</a>
                             <button type="submit" onclick="return confirm('Opravdu chcete smazat tento úkol?');">Smazat</button>
                         </form>
                     </li>
