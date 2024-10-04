@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
                 <button type="submit" onclick="return confirm('Opravdu chcete smazat tento úkol?');">Smazat</button>
             </form>
             <a href="index.php">Zpět</a>
+            <a href="upravit-ukol.php?id=<?= $task['id'] ?>">Upravit</a>
         <?php endif ?>   
     </main>
 </body>

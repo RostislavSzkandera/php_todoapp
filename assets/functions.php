@@ -54,3 +54,25 @@ function getTask($connection, $id) {
             return false;
         }
 }
+
+
+
+function updateTask($connection, $title, $description, $status, $id){
+    $sql = "UPDATE task
+            SET title = ?, description = ?, status = ?
+            WHERE id = ?";
+       
+    $stmt = mysqli_prepare($connection, $sql);
+
+    if($stmt === false) {
+        echo mysqli_error($connection);
+    }   else {
+        mysqli_stmt_bind_param($stmt,  "sssi", $title, $description, $status, $id);         
+    }   
+    if(mysqli_stmt_execute($stmt)){
+        header("Location: index.php");
+    }   else {
+        echo mysqli_stmt_error($stmt);
+    }
+    
+}
